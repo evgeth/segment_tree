@@ -1,2 +1,1 @@
-def test():
-    return "Test function"
+from .segment_tree import *

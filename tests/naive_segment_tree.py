@@ -1,7 +1,10 @@
 from segment_tree.operations import *
 
+
 class NaiveSegmentTree:
-    def __init__(self, array, operations=[sum_operation, min_operation, max_operation]):
+    def __init__(self,
+                 array,
+                 operations=[sum_operation, min_operation, max_operation]):
         self.array = array
         self.operations = {}
         for op in operations:

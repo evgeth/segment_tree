@@ -1,7 +1,10 @@
 from segment_tree.operations import *
 
+
 class SegmentTree:
-    def __init__(self, array, operations=[sum_operation, min_operation, max_operation]):
+    def __init__(self,
+                 array,
+                 operations=[sum_operation, min_operation, max_operation]):
         self.array = array
         if type(operations) != list:
             raise TypeError("operations must be a list")
@@ -39,10 +42,11 @@ class SegmentTreeNode:
         if start == end:
             self.sync()
             return
-        self.left = SegmentTreeNode(start, start + (end - start) // 2, segment_tree)
-        self.right = SegmentTreeNode(start + (end - start) // 2 + 1, end, segment_tree)
+        self.left = SegmentTreeNode(start, start + (end - start) // 2,
+                                    segment_tree)
+        self.right = SegmentTreeNode(start + (end - start) // 2 + 1, end,
+                                     segment_tree)
         self.sync()
-
 
     def query(self, start, end, operation):
         if end < self.range[0] or start > self.range[1]:
@@ -50,8 +54,10 @@ class SegmentTreeNode:
         if start <= self.range[0] and self.range[1] <= end:
             return self.values[operation.name]
         self.push()
-        left_res = self.left.query(start, end, operation) if self.left else None
-        right_res = self.right.query(start, end, operation) if self.right else None
+        left_res = self.left.query(start, end,
+                                   operation) if self.left else None
+        right_res = self.right.query(start, end,
+                                     operation) if self.right else None
         if left_res is None:
             return right_res
         if right_res is None:
@@ -91,8 +97,8 @@ class SegmentTreeNode:
                 self.values[op.name] = op.f([current_value])
         else:
             for op in self.parent_tree.operations.values():
-                result = op.f([self.left.values[op.name],
-                               self.right.values[op.name]])
+                result = op.f(
+                    [self.left.values[op.name], self.right.values[op.name]])
                 if self.range_value is not None:
                     bound_length = self.range[1] - self.range[0] + 1
                     result = op.f_on_equal(self.range_value, bound_length)
@@ -109,7 +115,8 @@ class SegmentTreeNode:
             self.range_value = None
 
     def __repr__(self):
-        ans = "({}, {}): {}\n".format(self.range[0], self.range[1], self.values)
+        ans = "({}, {}): {}\n".format(self.range[0], self.range[1],
+                                      self.values)
         if self.left:
             ans += self.left.__repr__()
         if self.right:

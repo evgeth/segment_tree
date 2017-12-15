@@ -47,41 +47,6 @@ Installation
 
 ``pip3 install segment-tree``
 
-Supported operations and complexity
-===================================
-
-+---------+------------+--------------+----------+
-| Functio | Descriptio | Complexity   | Addition |
-| n       | n          |              | al       |
-|         |            |              | storage  |
-+=========+============+==============+==========+
-| ``Segme | Builds a   | O(n log n)   | O(n log  |
-| ntTree( | segment    |              | n)       |
-| array)` | tree from  |              |          |
-| `       | an         |              |          |
-|         | ``array``  |              |          |
-+---------+------------+--------------+----------+
-| ``updat | Updates an | O(log n)     | O(1)     |
-| e(posit | old value  |              |          |
-| ion, va | at         |              |          |
-| lue)``  | ``position |              |          |
-|         | ``         |              |          |
-|         | to         |              |          |
-|         | ``value``  |              |          |
-+---------+------------+--------------+----------+
-| ``updat | Sets       | O(log n)     | O(1)     |
-| e_range | ``value``  |              |          |
-| (start, | on a       |              |          |
-|  end, v | ``[start,  |              |          |
-| alue)`` | end]``     |              |          |
-|         | range      |              |          |
-+---------+------------+--------------+----------+
-| ``query | Returns    | O(log n)     | O(1)     |
-| (start, | ``function |              |          |
-|  end, f | ([start, e |              |          |
-| unction | nd])``     |              |          |
-| )``     |            |              |          |
-+---------+------------+--------------+----------+
 
 Tests
 =====

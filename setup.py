@@ -3,17 +3,11 @@ from setuptools import find_packages
 from codecs import open
 from os import path
 
-here = path.abspath(path.dirname(__file__))
-
-try:
-    import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
-except (IOError, ImportError):
-    long_description = open('README').read()
+long_description = open('README').read()
 
 setup(
     name='segment_tree',
-    version='0.2.2',
+    version='0.2.3',
     description='The most comprehensive implementation of Segment Tree.',
     long_description=long_description,
     url='https://github.com/evgeth/segment_tree',

@@ -4,13 +4,12 @@ Segment Tree with range operations
 .. figure:: https://img.shields.io/badge/license-MIT-blue.svg
    :alt: LicenseLink
 
-   LicenseLink
-
 This is a general implementation of a segment tree for Python 3.
 
 -  Semigroup range operations in O(logN) time
 -  Built-in support for ``max``, ``min``, ``sum`` operations
 -  Extensible to support more semigroup operations
+-  Limited support for multidimensional trees
 -  Python 2 is not currently supported
 
 Installation
@@ -49,8 +48,8 @@ Updates on ranges
         t.update_range(1, 4, 2) # 6 2 2 2 2
         t.query(0, 3, "min") # 2
 
-Multidimensional Segment Tree example usage (alpha version, might have bugs)
-============================================================================
+Multidimensional Segment Tree (alpha version, might have bugs)
+==============================================================
 
 Basic usage
 -----------

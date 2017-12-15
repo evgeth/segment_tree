@@ -7,7 +7,7 @@ long_description = open('README').read()
 
 setup(
     name='segment_tree',
-    version='0.3.0',
+    version='0.3.1',
     description='Multidimensional segment tree with ranges updates.',
     long_description=long_description,
     url='https://github.com/evgeth/segment_tree',

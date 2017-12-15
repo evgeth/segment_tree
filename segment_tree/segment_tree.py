@@ -1,8 +1,10 @@
 from segment_tree.operations import *
 
 class SegmentTree:
-    def __init__(self, array, functions=[min, max, add, mul]):
+    def __init__(self, array, functions=[min, max, sum, mul]):
         self.array = array
+        if type(functions) != list:
+            raise TypeError("functions must be a list")
         self.functions = functions
         self.root = SegmentTreeNode(0, len(array) - 1, self)
 
@@ -50,7 +52,7 @@ class SegmentTreeNode:
             return right_res
         if right_res is None:
             return left_res
-        return function(left_res, right_res)
+        return function([left_res, right_res])
 
     def update(self, position, value):
         if position < self.range[0] or position > self.range[1]:
@@ -67,11 +69,11 @@ class SegmentTreeNode:
     def sync(self):
         if self.range[0] == self.range[1]:
             for function in self.parent_tree.functions:
-                self.values[function.__name__] = self.parent_tree.array[self.range[0]]
+                self.values[function.__name__] = function([self.parent_tree.array[self.range[0]]])
         else:
             for function in self.parent_tree.functions:
-                self.values[function.__name__] = function(self.left.values[function.__name__],
-                                                          self.right.values[function.__name__])
+                self.values[function.__name__] = function([self.left.values[function.__name__],
+                                                          self.right.values[function.__name__]])
 
     def __repr__(self):
         ans = "({}, {}): {}\n".format(self.range[0], self.range[1], self.values)

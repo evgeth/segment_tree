@@ -1,5 +1,5 @@
-def add(a, b):
-    return a + b
-
-def mul(a, b):
-    return a * b
+def mul(lst):
+    ans = 1
+    for i in lst:
+        ans *= i
+    return ans

@@ -1,14 +1,17 @@
 from segment_tree.operations import *
 
 class NaiveSegmentTree:
-    def __init__(self, array, functions=[min, max, sum]):
+    def __init__(self, array, operations=[sum_operation, min_operation, max_operation]):
         self.array = array
-        self.functions = functions
+        self.operations = {}
+        for op in operations:
+            self.operations[op.name] = op
 
-    def query(self, start, end, function):
-        if function not in self.functions:
-            raise NotImplemented
-        return function(self.array[start:end + 1])
+    def query(self, start, end, operation_name):
+        if self.operations.get(operation_name) == None:
+            raise Exception("This operation is not available")
+        op = self.operations[operation_name]
+        return op.f(self.array[start:end + 1])
 
     def summary(self):
         return self.root.values

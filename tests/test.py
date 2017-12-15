@@ -27,9 +27,9 @@ class TestSegmentTree(TestCase):
         for i in range(number_of_queries):
             l = random.randint(0, array_length - 1)
             r = random.randint(l, array_length - 1)
-            self.assertEqual(t.query(l, r, "min"), test_t.query(l, r, min))
-            self.assertEqual(t.query(l, r, "max"), test_t.query(l, r, max))
-            self.assertEqual(t.query(l, r, "sum"), test_t.query(l, r, sum))
+            self.assertEqual(t.query(l, r, "min"), test_t.query(l, r, "min"))
+            self.assertEqual(t.query(l, r, "max"), test_t.query(l, r, "max"))
+            self.assertEqual(t.query(l, r, "sum"), test_t.query(l, r, "sum"))
 
     def test_float_segment_tree(self):
         array_length = 100
@@ -41,9 +41,9 @@ class TestSegmentTree(TestCase):
         for i in range(number_of_queries):
             l = random.randint(0, array_length - 1)
             r = random.randint(l, array_length - 1)
-            self.assertAlmostEqual(t.query(l, r, "min"), test_t.query(l, r, min))
-            self.assertAlmostEqual(t.query(l, r, "max"), test_t.query(l, r, max))
-            self.assertAlmostEqual(t.query(l, r, "sum"), test_t.query(l, r, sum))
+            self.assertAlmostEqual(t.query(l, r, "min"), test_t.query(l, r, "min"))
+            self.assertAlmostEqual(t.query(l, r, "max"), test_t.query(l, r, "max"))
+            self.assertAlmostEqual(t.query(l, r, "sum"), test_t.query(l, r, "sum"))
 
     def test_segment_tree_updates(self):
         array_length = 100
@@ -57,6 +57,6 @@ class TestSegmentTree(TestCase):
             t.update(update_pos, random.randint(-100, 100))
             l = random.randint(0, update_pos)
             r = random.randint(update_pos, array_length - 1)
-            self.assertEqual(t.query(l, r, "min"), test_t.query(l, r, min))
-            self.assertEqual(t.query(l, r, "max"), test_t.query(l, r, max))
-            self.assertEqual(t.query(l, r, "sum"), test_t.query(l, r, sum))
+            self.assertEqual(t.query(l, r, "min"), test_t.query(l, r, "min"))
+            self.assertEqual(t.query(l, r, "max"), test_t.query(l, r, "max"))
+            self.assertEqual(t.query(l, r, "sum"), test_t.query(l, r, "sum"))

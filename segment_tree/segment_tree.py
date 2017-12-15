@@ -2,9 +2,18 @@ from segment_tree.operations import *
 
 
 class SegmentTree:
+    """
+    SegmentTree class. Handles an underlying array as well as available
+    operations and pointer to the root of a tree.
+    """
+
     def __init__(self,
                  array,
                  operations=[sum_operation, min_operation, max_operation]):
+        """
+        Builds a segment tree based on the provided `array`. Supports operations
+        of class Operation provided in the operations array.
+        """
         self.array = array
         if type(operations) != list:
             raise TypeError("operations must be a list")
@@ -14,24 +23,43 @@ class SegmentTree:
         self.root = SegmentTreeNode(0, len(array) - 1, self)
 
     def query(self, start, end, operation_name):
+        """
+        Returns the result of the operation execution with `operation_name`
+        on the range from [start, end]
+        """
         if self.operations.get(operation_name) == None:
             raise Exception("This operation is not available")
-        return self.root.query(start, end, self.operations[operation_name])
+        return self.root._query(start, end, self.operations[operation_name])
 
     def summary(self):
+        """
+        Prints the summary for the whole array (values in the root node).
+        """
         return self.root.values
 
     def update(self, position, value):
-        self.root.update(position, value)
+        """
+        Updates an old value at `position` to a new `value`.
+        """
+        self.root._update(position, value)
 
     def update_range(self, start, end, value):
-        self.root.update_range(start, end, value)
+        """
+        Updates old values old in the range [start, end], inclusively, to a new value.
+        """
+        self.root._update_range(start, end, value)
 
     def __repr__(self):
         return self.root.__repr__()
 
 
 class SegmentTreeNode:
+    """
+    Internal SegmentTreeNode class represents a node of a segment tree. Each node
+    stores the reference to the left and the right bound of a segment this
+    node is responsible for.
+    """
+
     def __init__(self, start, end, segment_tree):
         self.range = (start, end)
         self.parent_tree = segment_tree
@@ -40,55 +68,55 @@ class SegmentTreeNode:
         self.left = None
         self.right = None
         if start == end:
-            self.sync()
+            self._sync()
             return
         self.left = SegmentTreeNode(start, start + (end - start) // 2,
                                     segment_tree)
         self.right = SegmentTreeNode(start + (end - start) // 2 + 1, end,
                                      segment_tree)
-        self.sync()
+        self._sync()
 
-    def query(self, start, end, operation):
+    def _query(self, start, end, operation):
         if end < self.range[0] or start > self.range[1]:
             return None
         if start <= self.range[0] and self.range[1] <= end:
             return self.values[operation.name]
-        self.push()
-        left_res = self.left.query(start, end,
-                                   operation) if self.left else None
-        right_res = self.right.query(start, end,
-                                     operation) if self.right else None
+        self._push()
+        left_res = self.left._query(start, end,
+                                    operation) if self.left else None
+        right_res = self.right._query(start, end,
+                                      operation) if self.right else None
         if left_res is None:
             return right_res
         if right_res is None:
             return left_res
         return operation.f([left_res, right_res])
 
-    def update(self, position, value):
+    def _update(self, position, value):
         if position < self.range[0] or position > self.range[1]:
             return
         if position == self.range[0] and self.range[1] == position:
             self.parent_tree.array[position] = value
-            self.sync()
+            self._sync()
             return
-        self.push()
-        self.left.update(position, value)
-        self.right.update(position, value)
-        self.sync()
+        self._push()
+        self.left._update(position, value)
+        self.right._update(position, value)
+        self._sync()
 
-    def update_range(self, start, end, value):
+    def _update_range(self, start, end, value):
         if end < self.range[0] or start > self.range[1]:
             return
         if start <= self.range[0] and self.range[1] <= end:
             self.range_value = value
-            self.sync()
+            self._sync()
             return
-        self.push()
-        self.left.update_range(start, end, value)
-        self.right.update_range(start, end, value)
-        self.sync()
+        self._push()
+        self.left._update_range(start, end, value)
+        self.right._update_range(start, end, value)
+        self._sync()
 
-    def sync(self):
+    def _sync(self):
         if self.range[0] == self.range[1]:
             for op in self.parent_tree.operations.values():
                 current_value = self.parent_tree.array[self.range[0]]
@@ -104,14 +132,14 @@ class SegmentTreeNode:
                     result = op.f_on_equal(self.range_value, bound_length)
                 self.values[op.name] = result
 
-    def push(self):
+    def _push(self):
         if self.range_value is None:
             return
         if self.left:
             self.left.range_value = self.range_value
             self.right.range_value = self.range_value
-            self.left.sync()
-            self.right.sync()
+            self.left._sync()
+            self.right._sync()
             self.range_value = None
 
     def __repr__(self):

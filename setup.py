@@ -13,7 +13,7 @@ except (IOError, ImportError):
 
 setup(
     name='segment_tree',
-    version='0.2.1',
+    version='0.2.2',
     description='The most comprehensive implementation of Segment Tree.',
     long_description=long_description,
     url='https://github.com/evgeth/segment_tree',

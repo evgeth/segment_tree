@@ -2,6 +2,11 @@ from segment_tree.operations import *
 
 
 class NaiveSegmentTree:
+    """
+    Naive implementation of a segment tree for testing purposes. Should matches
+    an API of `SegmentTree` class.
+    """
+
     def __init__(self,
                  array,
                  operations=[sum_operation, min_operation, max_operation]):

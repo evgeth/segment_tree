@@ -1,9 +1,7 @@
-################
 Segment Tree implementation for Python 3
-################
+========================================
 
-.. |LicenseLink| image:: https://img.shields.io/badge/license-MIT-blue.svg
-.. _LicenseLink: https://github.com/evgeth/segment_tree
+![LicenseLink](https://img.shields.io/badge/license-MIT-blue.svg)
 
 This is a general implementation of a segment tree for Python 3.
 
@@ -12,11 +10,10 @@ This is a general implementation of a segment tree for Python 3.
 * Extensible to support all semigroup operations
 * Only Python 3 for now
 
-============
 Example usage
 ============
 
-.. code:: python
+```python
 
     array = [3, 1, 5, 3, 13, 7, 2, 7, 2]
     tree = SegmentTree(array, [min, max, sum])
@@ -28,18 +25,18 @@ Example usage
     t.query(0, 8, min) # 0
     t.update(2, -1) # [10, 1, -1, 3, 13, 7, 2, 0, 2]
     t.query(0, 2, min) # -1
+```
 
-============
 Installation
 ============
 pip3 install segment-tree
 
-============
+
 Complexity of operations
 ============
 TODO
 
-============
+
 Dependencies
 ============
 TODO

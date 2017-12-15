@@ -19,9 +19,9 @@ class NaiveSegmentTree:
     def update(self, position, value):
         self.array[position] = value
 
-    def add(self, start, end, value):
+    def update_range(self, start, end, value):
         for i in range(start, end + 1):
-            self.array[i] += value
+            self.array[i] = value
 
     def __repr__(self):
         return self.root.__repr__()

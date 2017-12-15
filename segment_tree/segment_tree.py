@@ -21,8 +21,8 @@ class SegmentTree:
     def update(self, position, value):
         self.root.update(position, value)
 
-    def add(self, start, end, value):
-        self.root.add(start, end, value)
+    def update_range(self, start, end, value):
+        self.root.update_range(start, end, value)
 
     def __repr__(self):
         return self.root.__repr__()
@@ -70,19 +70,17 @@ class SegmentTreeNode:
         self.right.update(position, value)
         self.sync()
 
-#     def add(self, start, end, value):
-#         if end < self.range[0] or start > self.range[1]:
-#             return
-#         if start <= self.range[0] and self.range[1] <= end:
-#             if self.range_delta is None:
-#                 self.range_delta = value
-#             else:
-#                 self.range_delta += value
-#             self.sync()
-#             return
-#         self.left.add(start, end, value)
-#         self.right.add(start, end, value)
-#         self.sync()
+    def update_range(self, start, end, value):
+        if end < self.range[0] or start > self.range[1]:
+            return
+        if start <= self.range[0] and self.range[1] <= end:
+            self.range_value = value
+            self.sync()
+            return
+        self.push()
+        self.left.update_range(start, end, value)
+        self.right.update_range(start, end, value)
+        self.sync()
 
     def sync(self):
         if self.range[0] == self.range[1]:
@@ -104,9 +102,11 @@ class SegmentTreeNode:
         if self.range_value is None:
             return
         if self.left:
-            self.left.range_value += self.range_value
-            self.right.range_value += self.range_value
-        self.range_value = None
+            self.left.range_value = self.range_value
+            self.right.range_value = self.range_value
+            self.left.sync()
+            self.right.sync()
+            self.range_value = None
 
     def __repr__(self):
         ans = "({}, {}): {}\n".format(self.range[0], self.range[1], self.values)
@@ -115,4 +115,3 @@ class SegmentTreeNode:
         if self.right:
             ans += self.right.__repr__()
         return ans
-        

@@ -29,16 +29,19 @@ Example usage
 
 Installation
 ============
-pip3 install segment-tree
 
+`pip3 install segment-tree`
 
-Complexity of operations
+Supported operations and complexity
 ============
-TODO
+| Function | Description | Complexity | Additional storage
+| ------ |---------|----------:|------:
+| `SegmentTree(array)` | Builds a segment tree from an `array` | O(n log n) | O(n log n)        
+| `update(position, value)` | Updates an old value at `position` to `value`| O(log n) | O(1)
+| `add(start, end, value)` | Adds `value` on a `[start, end]` range | O(log n) | O(1)
+| `query(start, end, function)` | Returns `function([start, end])`| O(log n) | O(1)
 
 
-Dependencies
-============
-TODO
-
-Status: WIP
+Tests
+=====
+Execute `python3 setup.py test` to run tests.

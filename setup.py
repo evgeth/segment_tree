@@ -14,13 +14,13 @@ except(IOError, ImportError):
 
 
 setup(name='segment_tree',
-      version='0.1.4',
+      version='0.2.0',
       description='The most comprehensive implementation of Segment Tree.',
       long_description=long_description,
       url='https://github.com/evgeth/segment_tree',
       author='Evgeny Yurtaev',
       author_email='eugene@yurtaev.com',
       license='MIT',
-      packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
+      packages=find_packages(exclude=['tests*']),
       keywords='segment, tree, range, rmq',
       python_requires='>=3')

@@ -1,4 +1,4 @@
-Segment Tree implementation for Python 3
+Segment Tree with range operations
 ========================================
 
 ![LicenseLink](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -16,7 +16,7 @@ Example usage
 ```python
 
     array = [3, 1, 5, 3, 13, 7, 2, 7, 2]
-    tree = SegmentTree(array, [min, max, sum])
+    tree = SegmentTree(array)
 
     t.query(1, 3, "sum") # 9
     t.update(0, 10) # [10, 1, 5, 3, 13, 7, 2, 7, 2]

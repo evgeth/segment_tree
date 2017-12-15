@@ -6,15 +6,20 @@ Segment Tree with range operations
 This is a general implementation of a segment tree for Python 3.
 
 * Semigroup range operations in O(logN) time
-* Built-in support for `max`, `min`, `sum` functions
+* Built-in support for `max`, `min`, `sum` operations
 * Extensible to support more semigroup operations
-* Only Python 3 for now
+* Python 2 is not currently supported
 
-Example usage
+Installation
 ============
-## Basic queries
+`pip3 install segment-tree`
+
+Segment Tree (one-dimensional)
+============
+## Basic usage
 ```python
 
+    from segment_tree import *
     array = [3, 1, 5, 3, 13, 7, 2, 7, 2]
     tree = SegmentTree(array)
 
@@ -26,6 +31,7 @@ Example usage
 ```
 ## Updates on ranges
 ```python
+    from segment_tree import *
     array = [1, 2, 3, 4, 5]
     t = SegmentTree(array)
     t.update_range(0, 2, 6) # 6 6 6 4 5
@@ -33,13 +39,8 @@ Example usage
     t.query(0, 3, "min") # 2
 ```
 
-Installation
-============
+## Operations and their complexity
 
-`pip3 install segment-tree`
-
-Supported operations and complexity
-============
 | Function | Description | Complexity | Additional storage
 | ------ |---------|----------:|------:
 | `SegmentTree(array)` | Builds a segment tree from an `array` | O(n log n) | O(n log n)        
@@ -47,6 +48,19 @@ Supported operations and complexity
 | `update_range(start, end, value)` | Sets `value` on a `[start, end]` range | O(log n) | O(1)
 | `query(start, end, function)` | Returns `function([start, end])`| O(log n) | O(1)
 
+
+Multidimensional Segment Tree example usage (alpha version, might have bugs)
+============
+## Basic usage
+```python
+    from segment_tree import *
+    a = [[[1, 2], [1, 3]], [[-1, -2], [-1, -3]]]
+    tree = MultidimensionalSegmentTree(a)
+
+    tree.query([(0, 1), (0, 0), (0, 0)], max) # 1
+    tree.query([(1, 1), (0, 1), (0, 1)], sum) # -7
+    tree.query([(0, 1), (1, 1), (0, 1)], min) # -3
+```
 
 Tests
 =====

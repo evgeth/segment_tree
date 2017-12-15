@@ -8,13 +8,12 @@ here = path.abspath(path.dirname(__file__))
 try:
     import pypandoc
     long_description = pypandoc.convert('README.md', 'rst')
-    print('hey')
 except(IOError, ImportError):
-    long_description = open('README.md').read()
+    long_description = open('README').read()
 
 
 setup(name='segment_tree',
-      version='0.2.0',
+      version='0.2.1',
       description='The most comprehensive implementation of Segment Tree.',
       long_description=long_description,
       url='https://github.com/evgeth/segment_tree',

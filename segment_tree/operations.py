@@ -18,5 +18,5 @@ def max_multiple(x, count):
 
 
 sum_operation = Operation("sum", sum, add_multiple, 0)
-min_operation = Operation("min", min, min_multiple, 1e9)
-max_operation = Operation("max", max, max_multiple, -1e9)
+min_operation = Operation("min", min, min_multiple, +float('inf'))
+max_operation = Operation("max", max, max_multiple, -float('inf'))

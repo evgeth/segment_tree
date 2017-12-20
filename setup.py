@@ -16,4 +16,4 @@ setup(
     license='MIT',
     packages=find_packages(exclude=['tests*']),
     keywords='segment, tree, range, rmq, multidimensional',
-    python_requires='>=3')
+    python_requires='>=2.7')

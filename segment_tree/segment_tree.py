@@ -1,4 +1,4 @@
-from segment_tree.operations import *
+from .operations import *
 
 
 class SegmentTree:

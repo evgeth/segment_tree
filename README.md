@@ -21,7 +21,7 @@ Segment Tree (one-dimensional)
 
     from segment_tree import *
     array = [3, 1, 5, 3, 13, 7, 2, 7, 2]
-    tree = SegmentTree(array)
+    t = SegmentTree(array)
 
     t.query(1, 3, "sum") # 9
     t.update(0, 10) # [10, 1, 5, 3, 13, 7, 2, 7, 2]
@@ -56,11 +56,11 @@ Multidimensional Segment Tree (alpha version, might have bugs)
 ```python
     from segment_tree import *
     a = [[[1, 2], [1, 3]], [[-1, -2], [-1, -3]]]
-    tree = MultidimensionalSegmentTree(a)
+    t = MultidimensionalSegmentTree(a)
 
-    tree.query([(0, 1), (0, 0), (0, 0)], max) # 1
-    tree.query([(1, 1), (0, 1), (0, 1)], sum) # -7
-    tree.query([(0, 1), (1, 1), (0, 1)], min) # -3
+    t.query([(0, 1), (0, 0), (0, 0)], max) # 1
+    t.query([(1, 1), (0, 1), (0, 1)], sum) # -7
+    t.query([(0, 1), (1, 1), (0, 1)], min) # -3
 ```
 
 ## Operations and their complexity
